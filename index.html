@@ -1,20 +1,1362 @@
-<style>
-.box {
-    width: 50px;
-    height: 50px;
-    padding: 20px;
-    margin: 5px;
-    background-color: aqua;
-}
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.container {
-    display: flex;
-    gap: 5px;
-}
-</style>
-<div class="container">
-    <div class="box">Box 1</div>
-    <div class="box">Box 2</div>
-    <div class="box">Box 3</div>
-    <div class="box">Box 4</div>
-</div>
+    <meta name="description" content="Northstar helps growing businesses turn their online presence into a consistent source of qualified leads.">
+    <title>Northstar — Digital Growth Studio</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+        :root {
+            --ink: #17211b;
+            --muted: #66716a;
+            --cream: #f5f3ed;
+            --white: #ffffff;
+            --green: #173f2b;
+            --lime: #c9e86b;
+            --line: #dfe2db;
+            --soft-green: #e9efe8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: var(--ink);
+            background: var(--cream);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            width: 100%;
+            padding: 22px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #8cab35;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 34px;
+            list-style: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            transition: opacity 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.55;
+        }
+
+        .nav-cta {
+            background: var(--green);
+            color: white;
+            padding: 11px 19px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            background: #245a3d;
+        }
+
+        .menu-btn {
+            display: none;
+            border: 0;
+            background: none;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 760px;
+            padding: 150px 6% 100px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 70px;
+            align-items: center;
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 2px;
+            background: #9db94b;
+        }
+
+        h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(52px, 6vw, 86px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            font-weight: 600;
+            max-width: 750px;
+        }
+
+        h1 em {
+            color: #66822d;
+            font-style: normal;
+        }
+
+        .hero-copy {
+            margin-top: 27px;
+            color: var(--muted);
+            font-size: 17px;
+            max-width: 570px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 23px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+
+        .primary-btn {
+            background: var(--green);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            background: #28583d;
+        }
+
+        .secondary-btn {
+            border: 1px solid #bfc4bb;
+        }
+
+        .secondary-btn:hover {
+            border-color: var(--green);
+            transform: translateY(-3px);
+        }
+
+        .hero-note {
+            margin-top: 22px;
+            color: #7a827c;
+            font-size: 12px;
+        }
+
+        /* HERO VISUAL */
+
+        .hero-visual {
+            position: relative;
+            height: 510px;
+        }
+
+        .visual-main {
+            position: absolute;
+            inset: 35px 10px 0 50px;
+            background: var(--green);
+            overflow: hidden;
+            padding: 30px;
+        }
+
+        .visual-main::before {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            right: -70px;
+            top: -70px;
+        }
+
+        .visual-main::after {
+            content: "";
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50%;
+            right: -160px;
+            top: -160px;
+        }
+
+        .visual-label {
+            color: #cbd7ca;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .growth-number {
+            position: absolute;
+            left: 30px;
+            bottom: 38px;
+            color: white;
+        }
+
+        .growth-number strong {
+            display: block;
+            font-family: "Playfair Display", serif;
+            font-size: 70px;
+            line-height: 1;
+            font-weight: 500;
+        }
+
+        .growth-number span {
+            color: #b8c9b9;
+            font-size: 13px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 22px;
+            box-shadow: 0 18px 45px rgba(18, 35, 24, 0.15);
+        }
+
+        .card-one {
+            top: 0;
+            right: -5px;
+            width: 210px;
+        }
+
+        .card-two {
+            bottom: 45px;
+            left: 0;
+            width: 185px;
+        }
+
+        .floating-card small {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .floating-card strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 26px;
+        }
+
+        .mini-line {
+            height: 4px;
+            margin-top: 15px;
+            background: #dfe5dc;
+            position: relative;
+        }
+
+        .mini-line span {
+            position: absolute;
+            height: 100%;
+            width: 72%;
+            background: #91ad48;
+        }
+
+        /* TRUST */
+
+        .trust {
+            padding: 28px 6%;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            background: #f0eee7;
+        }
+
+        .trust p {
+            color: #7a817c;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .logos {
+            display: flex;
+            gap: 40px;
+            color: #59625b;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* GENERAL */
+
+        .section {
+            padding: 110px 6%;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin-bottom: 55px;
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 4vw, 58px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin-top: 12px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            margin-top: 18px;
+            max-width: 570px;
+        }
+
+        /* SERVICES */
+
+        .services {
+            background: var(--white);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line);
+            border-left: 1px solid var(--line);
+        }
+
+        .service {
+            padding: 35px;
+            min-height: 280px;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            transition: background 0.3s ease;
+        }
+
+        .service:hover {
+            background: #f4f6f0;
+        }
+
+        .service-number {
+            color: #829846;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .service h3 {
+            font-size: 22px;
+            margin: 45px 0 12px;
+        }
+
+        .service p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* BENEFITS */
+
+        .benefits {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 90px;
+            align-items: start;
+        }
+
+        .benefit-list {
+            border-top: 1px solid var(--line);
+        }
+
+        .benefit {
+            padding: 25px 0;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 15px;
+        }
+
+        .benefit-number {
+            color: #80963f;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .benefit h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .benefit p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* PROCESS */
+
+        .process {
+            background: var(--green);
+            color: white;
+        }
+
+        .process .eyebrow {
+            color: #b9c9b6;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .process-step {
+            padding: 30px;
+            border-left: 1px solid rgba(255,255,255,0.18);
+        }
+
+        .process-step:last-child {
+            border-right: 1px solid rgba(255,255,255,0.18);
+        }
+
+        .process-step span {
+            color: #c9e86b;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .process-step h3 {
+            margin: 65px 0 12px;
+            font-size: 20px;
+        }
+
+        .process-step p {
+            color: #bac6bc;
+            font-size: 13px;
+        }
+
+        /* TESTIMONIAL */
+
+        .testimonial {
+            background: #e9eee6;
+        }
+
+        .quote {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .quote-mark {
+            font-family: Georgia, serif;
+            font-size: 80px;
+            line-height: 0.5;
+            color: #94a95a;
+        }
+
+        .quote blockquote {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(30px, 4vw, 48px);
+            line-height: 1.2;
+            margin: 35px 0;
+        }
+
+        .person {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .person strong {
+            color: var(--ink);
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: var(--white);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .stat {
+            text-align: center;
+            padding: 55px 20px;
+            border-right: 1px solid var(--line);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat strong {
+            display: block;
+            font-family: "Playfair Display", serif;
+            font-size: 48px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* FAQ */
+
+        .faq {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        details {
+            border-top: 1px solid var(--line);
+            padding: 23px 0;
+        }
+
+        details:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+";
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        details[open] summary::after {
+            content: "−";
+        }
+
+        details p {
+            max-width: 720px;
+            color: var(--muted);
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* CTA */
+
+        .final-cta {
+            margin: 0 6% 100px;
+            background: #d9e8bd;
+            padding: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .final-cta h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1;
+            max-width: 650px;
+        }
+
+        .final-cta p {
+            margin-top: 15px;
+            color: #586254;
+            max-width: 540px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #121b15;
+            color: white;
+            padding: 70px 6% 25px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding-bottom: 60px;
+        }
+
+        .footer-brand p {
+            color: #9aa59d;
+            max-width: 300px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        footer h4 {
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 9px;
+        }
+
+        footer li a {
+            color: #9aa59d;
+            font-size: 13px;
+            transition: color 0.2s ease;
+        }
+
+        footer li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #29332c;
+            padding-top: 22px;
+            color: #778279;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* ANIMATION */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                position: absolute;
+                top: 70px;
+                left: 6%;
+                right: 6%;
+                background: white;
+                padding: 25px;
+                flex-direction: column;
+                gap: 20px;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 130px;
+            }
+
+            .hero-visual {
+                height: 450px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .process-step {
+                border-bottom: 1px solid rgba(255,255,255,0.18);
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 18px 5%;
+            }
+
+            .hero {
+                padding: 120px 5% 70px;
+                min-height: auto;
+            }
+
+            h1 {
+                font-size: 50px;
+                letter-spacing: -2px;
+            }
+
+            .hero-visual {
+                height: 380px;
+            }
+
+            .visual-main {
+                inset: 30px 0 0 25px;
+            }
+
+            .card-one {
+                right: 0;
+                width: 175px;
+            }
+
+            .card-two {
+                left: -5px;
+                bottom: 20px;
+            }
+
+            .logos {
+                width: 100%;
+                justify-content: space-between;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .section {
+                padding: 75px 5%;
+            }
+
+            .service-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .final-cta {
+                margin: 0 5% 70px;
+                padding: 45px 30px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#" class="logo">north<span>star</span></a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">
+            ☰
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#work">What We Do</a></li>
+            <li><a href="#process">Our Process</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <a href="#contact" class="nav-cta">Start a Conversation</a>
+    </nav>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content reveal">
+
+                <div class="eyebrow">Digital growth studio</div>
+
+                <h1>
+                    Make your brand
+                    <em>hard to ignore.</em>
+                </h1>
+
+                <p class="hero-copy">
+                    Northstar helps ambitious businesses turn scattered marketing
+                    into a clear digital presence that earns attention, builds trust,
+                    and creates measurable demand.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#contact" class="primary-btn">Start a Conversation →</a>
+                    <a href="#work" class="secondary-btn">Explore Our Work</a>
+                </div>
+
+                <p class="hero-note">
+                    Strategy · Design · Content · Digital Experience
+                </p>
+
+            </div>
+
+
+            <div class="hero-visual reveal">
+
+                <div class="visual-main">
+                    <span class="visual-label">Client growth dashboard</span>
+
+                    <div class="growth-number">
+                        <strong>+184%</strong>
+                        <span>qualified enquiries over 6 months</span>
+                    </div>
+                </div>
+
+                <div class="floating-card card-one">
+                    <small>Conversion rate</small>
+                    <strong>8.6%</strong>
+
+                    <div class="mini-line">
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="floating-card card-two">
+                    <small>Monthly leads</small>
+                    <strong>+312</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRUST -->
+        <section class="trust">
+            <p>Trusted by teams building what's next</p>
+
+            <div class="logos">
+                <span>ARC</span>
+                <span>MONUMENT</span>
+                <span>VERDE</span>
+                <span>LOOM</span>
+                <span>ATLAS</span>
+            </div>
+        </section>
+
+
+        <!-- SERVICES -->
+        <section class="section services" id="work">
+
+            <div class="section-heading reveal">
+                <div class="eyebrow">What we do</div>
+
+                <h2>
+                    Less noise.<br>
+                    More momentum.
+                </h2>
+
+                <p>
+                    We combine strategy, creative direction and digital execution
+                    to solve the marketing problems that actually slow a business down.
+                </p>
+            </div>
+
+
+            <div class="service-grid">
+
+                <article class="service reveal">
+                    <span class="service-number">01</span>
+                    <h3>Brand Strategy</h3>
+                    <p>
+                        Positioning, messaging and a practical brand system that
+                        makes every future marketing decision easier.
+                    </p>
+                </article>
+
+                <article class="service reveal">
+                    <span class="service-number">02</span>
+                    <h3>Digital Experiences</h3>
+                    <p>
+                        Websites and landing pages designed around how real customers
+                        discover, evaluate and choose a business.
+                    </p>
+                </article>
+
+                <article class="service reveal">
+                    <span class="service-number">03</span>
+                    <h3>Demand Generation</h3>
+                    <p>
+                        Campaigns and content built to attract the right audience
+                        and move interested visitors toward action.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- BENEFITS -->
+        <section class="section">
+
+            <div class="benefits">
+
+                <div class="section-heading reveal">
+                    <div class="eyebrow">Why Northstar</div>
+
+                    <h2>
+                        Marketing should make the business clearer.
+                    </h2>
+
+                    <p>
+                        No vanity metrics. No unnecessary complexity.
+                        Just a focused system that your team can understand
+                        and actually use.
+                    </p>
+                </div>
+
+
+                <div class="benefit-list">
+
+                    <div class="benefit reveal">
+                        <span class="benefit-number">01</span>
+
+                        <div>
+                            <h3>Clarity before creativity</h3>
+                            <p>
+                                We define who you are speaking to and why they should
+                                care before designing another campaign.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="benefit reveal">
+                        <span class="benefit-number">02</span>
+
+                        <div>
+                            <h3>Designed for decisions</h3>
+                            <p>
+                                Every page, message and interaction has a job:
+                                helping your customer take the next step.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="benefit reveal">
+                        <span class="benefit-number">03</span>
+
+                        <div>
+                            <h3>Built to keep improving</h3>
+                            <p>
+                                We measure what matters, learn from behaviour and
+                                continuously refine the experience.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROCESS -->
+        <section class="section process" id="process">
+
+            <div class="section-heading reveal">
+                <div class="eyebrow">Our process</div>
+
+                <h2>
+                    Four steps from idea to impact.
+                </h2>
+            </div>
+
+
+            <div class="process-grid">
+
+                <div class="process-step reveal">
+                    <span>01</span>
+                    <h3>Discover</h3>
+                    <p>
+                        We understand your audience, offer, competitors
+                        and commercial goals.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <span>02</span>
+                    <h3>Define</h3>
+                    <p>
+                        We turn what we learn into a focused strategy,
+                        message and creative direction.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <span>03</span>
+                    <h3>Build</h3>
+                    <p>
+                        We create the experience, content and campaigns
+                        your customers actually see.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <span>04</span>
+                    <h3>Grow</h3>
+                    <p>
+                        We launch, measure performance and improve the
+                        system based on real-world behaviour.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TESTIMONIAL -->
+        <section class="section testimonial">
+
+            <div class="quote reveal">
+
+                <div class="quote-mark">“</div>
+
+                <blockquote>
+                    Northstar helped us stop talking about what we do
+                    and start communicating why customers should choose us.
+                </blockquote>
+
+                <p class="person">
+                    <strong>Riya Mehta</strong> · Founder, Verde Studio
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATS -->
+        <section class="stats" id="results">
+
+            <div class="stat reveal">
+                <strong>42+</strong>
+                <span>brands launched or repositioned</span>
+            </div>
+
+            <div class="stat reveal">
+                <strong>3.8×</strong>
+                <span>average return on campaign spend</span>
+            </div>
+
+            <div class="stat reveal">
+                <strong>91%</strong>
+                <span>of clients continue beyond the first project</span>
+            </div>
+
+        </section>
+
+
+        <!-- FAQ -->
+        <section class="section" id="faq">
+
+            <div class="section-heading reveal">
+                <div class="eyebrow">Questions</div>
+
+                <h2>
+                    Before we get started.
+                </h2>
+            </div>
+
+
+            <div class="faq">
+
+                <details>
+                    <summary>What type of businesses do you work with?</summary>
+                    <p>
+                        We typically work with growing service businesses, technology
+                        companies and ambitious consumer brands that have outgrown
+                        their current marketing.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>How long does a typical project take?</summary>
+                    <p>
+                        Most focused projects take between four and eight weeks.
+                        Larger brand and digital engagements are scoped separately
+                        based on complexity.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Do you work with existing marketing teams?</summary>
+                    <p>
+                        Yes. We regularly work alongside internal marketing,
+                        sales and product teams rather than replacing them.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>How do you measure success?</summary>
+                    <p>
+                        We agree on measurable objectives before starting.
+                        Depending on the project, that could include qualified
+                        leads, conversion rate, customer acquisition cost or revenue.
+                    </p>
+                </details>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL CTA -->
+        <section class="final-cta reveal" id="contact">
+
+            <div>
+                <h2>
+                    Have a growth problem worth solving?
+                </h2>
+
+                <p>
+                    Tell us where the business is today, where you want it to go,
+                    and what is getting in the way.
+                </p>
+            </div>
+
+            <a href="mailto:hello@northstar.example" class="primary-btn">
+                Book a Discovery Call →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+                <div class="logo">north<span>star</span></div>
+
+                <p>
+                    A digital growth studio helping ambitious businesses
+                    become clearer, sharper and easier to choose.
+                </p>
+            </div>
+
+
+            <div>
+                <h4>Explore</h4>
+
+                <ul>
+                    <li><a href="#work">What We Do</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+
+
+            <div>
+                <h4>Connect</h4>
+
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Behance</a></li>
+                    <li><a href="mailto:hello@northstar.example">Email us</a></li>
+                </ul>
+            </div>
+
+
+            <div>
+                <h4>Office</h4>
+
+                <ul>
+                    <li><a href="#">Mumbai, India</a></li>
+                    <li><a href="mailto:hello@northstar.example">hello@northstar.example</a></li>
+                    <li><a href="tel:+912212345678">+91 22 1234 5678</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+            <span>© 2026 Northstar Studio. All rights reserved.</span>
+            <span>Privacy · Terms</span>
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        /* MOBILE MENU */
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+
+            if (navLinks.classList.contains("active")) {
+                menuBtn.textContent = "×";
+            } else {
+                menuBtn.textContent = "☰";
+            }
+        });
+
+
+        /* CLOSE MOBILE MENU AFTER CLICKING A LINK */
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                menuBtn.textContent = "☰";
+            });
+        });
+
+
+        /* SCROLL REVEAL */
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+
+        /* SIMPLE ACCESSIBLE FAQ */
+
+        document.querySelectorAll("details").forEach(item => {
+
+            item.addEventListener("toggle", function () {
+
+                if (this.open) {
+
+                    document.querySelectorAll("details").forEach(other => {
+
+                        if (other !== this) {
+                            other.removeAttribute("open");
+                        }
+
+                    });
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
